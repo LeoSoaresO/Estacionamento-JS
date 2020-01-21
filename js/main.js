@@ -1,6 +1,3 @@
-window.onload = mostraPatio(){
-    mostraPatio()
-};
 
 document.getElementById('formulario').addEventListener('submit', cadastraV)
 
@@ -9,12 +6,16 @@ function  cadastraV(e) {
     var placaCarro = document.getElementById('placaCarro').value
     var time = new Date();
 
+    if(!modeloCarro || !placaCarro){
+        alert('Por Favor, preencha os campos em branco!');
+        return false;
+    }
+
     carro = {
         modelo: modeloCarro,
         placa: placaCarro,
         hora: time.getHours(),
-        minutos: time.getMinutes(),
-            
+        minutos: time.getMinutes(),            
     }
  
        if (localStorage.getItem('patio') === null) {
@@ -27,18 +28,34 @@ function  cadastraV(e) {
            localStorage.setItem('patio',JSON.stringify(cars));  
        }
        
-    
+        document.getElementById('formulario').reset(); 
+
+        mostraPatio();
 
         e.preventDefault();
 }
 
+function apagarVeiculo(placa){
+   var carros = JSON.parse(localStorage.getItem('patio'));
+
+   for (var i = 0;i  < carros.length; i++){
+       if(carros[i].placa == placa){
+           carros.splice(i, 1);
+       }
+       localStorage.setItem('patio' , JSON.stringify(carros));
+    }
+   
+   mostraPatio();
+}
+
+
 function mostraPatio(){
-   var carros =  JSON.parse(localStorage.getItem("patio2"));
+   var carros =  JSON.parse(localStorage.getItem("patio"));
    var carrosResulatdos = document.getElementById('resultados');
 
    carrosResulatdos.innerHTML = '';
 
-   for (var i = 0; i < carros.length; ++i){
+   for (var i = 0; i < carros.length; i++){
        var modelo = carros[i].modelo;
        var placa = carros[i].placa;
        var hora = carros[i].hora;
@@ -47,10 +64,9 @@ function mostraPatio(){
        carrosResulatdos.innerHTML += '<tr><td>' + modelo + 
                             '</td><td>' + placa + 
                             '</td><td>' + hora + ' : ' + minutos + 
-                            '</tr>'
+                            '</td><td><button class "btn btn-danger" onclick = "apagarVeiculo(\''+ placa +'\')">Finalizar</button></td>' +
+                            '</tr>';
    }
-
-
 }
 
     
