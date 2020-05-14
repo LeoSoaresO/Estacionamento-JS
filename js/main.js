@@ -64,7 +64,7 @@ function mostraPatio(){
        carrosResulatdos.innerHTML += '<tr><td>' + modelo + 
                             '</td><td>' + placa + 
                             '</td><td>' + hora + ' : ' + minutos + 
-                            '</td><td><button class "btn btn-danger" onclick = "apagarVeiculo(\''+ placa +'\')">Finalizar</button></td>' +
+                            '</td><td><button class="btn btn-danger" onclick="apagarVeiculo(\''+ placa +'\')">Finalizar</button></td>' +
                             '</tr>';
    }
 }

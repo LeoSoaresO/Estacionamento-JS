@@ -1,0 +1,15 @@
+h2, tr, label {
+    font-family: 'Quicksand', sans-serif;
+}
+body{
+    background-image: url("../imagens/blur-background-outdoor-car-park-lot-with-bokeh_7189-902.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.jumbotron {
+    opacity: 0.8;
+}
+.colunas{
+    background-color: antiquewhite;
+    opacity: 0.8;
+}
